@@ -1,0 +1,18 @@
+# Compiled output
+/bin/
+/obj/
+/publish/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.vs
+
+# .NET Core / ASP.NET Core
+appsettings.Development.json
+appsettings.Production.json
+
+# Important: Do NOT ignore appsettings.json entirely, 
+# but we will handle it with User Secrets instead.
+# For now, let's keep the default template but remove the password.

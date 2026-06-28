@@ -1,0 +1,48 @@
+CREATE DATABASE CarRentalDB;
+GO
+
+USE CarRentalDB;
+GO
+
+CREATE TABLE Cars (
+    CarId INT IDENTITY(1,1) PRIMARY KEY,
+    Make NVARCHAR(50) NOT NULL,
+    Model NVARCHAR(50) NOT NULL,
+    Year INT NOT NULL,
+    LicensePlate NVARCHAR(20) UNIQUE NOT NULL,
+    DailyRate DECIMAL(10,2) NOT NULL,
+    IsAvailable BIT NOT NULL DEFAULT 1,
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE Customers (
+    CustomerId INT IDENTITY(1,1) PRIMARY KEY,
+    FirstName NVARCHAR(50) NOT NULL,
+    LastName NVARCHAR(50) NOT NULL,
+    Email NVARCHAR(100) UNIQUE NOT NULL,
+    Phone NVARCHAR(20),
+    Address NVARCHAR(200),
+    DriverLicenseNumber NVARCHAR(50) UNIQUE NOT NULL,
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE Rentals (
+    RentalId INT IDENTITY(1,1) PRIMARY KEY,
+    CarId INT NOT NULL FOREIGN KEY REFERENCES Cars(CarId),
+    CustomerId INT NOT NULL FOREIGN KEY REFERENCES Customers(CustomerId),
+    RentalDate DATETIME NOT NULL,
+    ReturnDate DATETIME NULL,
+    TotalCost DECIMAL(10,2) NOT NULL,
+    Status INT NOT NULL, -- 0=Active, 1=Completed, 2=Cancelled
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE Payments (
+    PaymentId INT IDENTITY(1,1) PRIMARY KEY,
+    RentalId INT NOT NULL FOREIGN KEY REFERENCES Rentals(RentalId),
+    Amount DECIMAL(10,2) NOT NULL,
+    PaymentDate DATETIME NOT NULL DEFAULT GETDATE(),
+    PaymentMethod INT NOT NULL, -- 0=CreditCard, 1=DebitCard, 2=PayPal, 3=Cash
+    TransactionId NVARCHAR(100) NULL,
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
