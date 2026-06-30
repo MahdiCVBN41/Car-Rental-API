@@ -42,7 +42,7 @@ CREATE TABLE Payments (
     RentalId INT NOT NULL FOREIGN KEY REFERENCES Rentals(RentalId),
     Amount DECIMAL(10,2) NOT NULL,
     PaymentDate DATETIME NOT NULL DEFAULT GETDATE(),
-    PaymentMethod INT NOT NULL, -- 0=CreditCard, 1=DebitCard, 2=PayPal, 3=Cash
+    PaymentMethod INT NOT NULL, 
     TransactionId NVARCHAR(100) NULL,
     CreatedAt DATETIME DEFAULT GETDATE()
 );
