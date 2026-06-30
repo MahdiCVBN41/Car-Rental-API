@@ -52,6 +52,6 @@ The database consists of four main tables:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/YourUsername/CarRentalAPI.git
+git clone https://github.com/MahdiCVBN41/CarRentalAPI.git
 cd CarRentalAPI
 execute all requirements on the requirement.txt file
